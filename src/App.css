@@ -1,7 +1,7 @@
 .App {
-  text-align: center;
+  overflow-y: overlay;
 }
-
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,4 +36,10 @@
   100% {
     transform: translateY(0px);
   }
+} */
+.body {
+  position: absolute;
+  width: 100%;
+  top: 6vh;
+  left: 0;
 }

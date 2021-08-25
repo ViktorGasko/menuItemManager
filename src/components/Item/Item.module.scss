@@ -1,0 +1,67 @@
+.container {
+  display: inline-flex;
+  position: relative;
+  height: calc(100% - 40px);
+  &:last-child {
+    margin-right: 15px;
+  }
+  #item {
+    margin: 10px;
+    height: 100%;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    .imgBox {
+      width: 100%;
+      height: 60%;
+      background: black;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+      .menuButton {
+        background: none;
+        border: none;
+        position: relative;
+        color: purple;
+        float: right;
+        padding: 5px 10px;
+        i {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .text {
+      h2 {
+        padding-left: 10%;
+        margin: 5px 0;
+        color: purple;
+        padding-right: 25px;
+      }
+      .name {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        color: black;
+        text-decoration: none;
+        height: 3.25rem;
+        margin-top: 0.25rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding-left: 10%;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+      }
+      animation: visible 1s ease-in-out forwards;
+      @keyframes visible {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

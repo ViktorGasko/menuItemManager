@@ -1,0 +1,68 @@
+.searchbar {
+  display: flexbox;
+  align-items: center;
+  padding: 0 15px;
+  margin-bottom: 15px;
+  .btnDiv {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 25px;
+    button {
+      border: none;
+      padding: 2px 8px;
+      border-radius: 5px;
+      div {
+        width: 35px;
+        height: 4px;
+        background-color: black;
+        border-radius: 10px;
+        margin: 6px 0;
+      }
+    }
+  }
+  &:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 98%;
+    padding-top: 10px;
+    border-bottom: 1px solid purple;
+  }
+  h2 {
+    display: inline-block;
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 20vw;
+    min-width: 200px;
+    font-size: 1rem;
+    margin-left: 25px;
+    &:focus {
+      border: 1px solid purple;
+      outline: none;
+    }
+  }
+  .btnRemoveSearch {
+    background: none;
+    border: none;
+    padding: 10px;
+    margin-left: 15px;
+    color: #777;
+    font-size: 1rem;
+    &:hover {
+      color: purple;
+    }
+  }
+  .searchMenuContainer {
+    position: absolute;
+    width: 20vw;
+    max-height: 500px;
+    min-width: 200px;
+    left: 345px;
+    z-index: 5;
+  }
+}

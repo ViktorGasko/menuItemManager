@@ -1,0 +1,32 @@
+.searchbar {
+  display: flexbox;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  &:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 98%;
+    padding-top: 20px;
+    border-bottom: 1px solid purple;
+  }
+  h2 {
+    display: inline-block;
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 20vw;
+    min-width: 200px;
+    font-size: 1rem;
+    margin-left: 25px;
+    &:focus {
+      border: 1px solid purple;
+      outline: none;
+    }
+  }
+}

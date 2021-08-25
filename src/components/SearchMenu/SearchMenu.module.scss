@@ -1,0 +1,40 @@
+.menu {
+  height: inherit;
+  max-height: 379px;
+  overflow-y: auto;
+  width: inherit;
+  ul {
+    li {
+      background: white;
+      border: 1px solid #777;
+      border-bottom: none;
+      &:last-child {
+        border: 1px solid #777;
+      }
+      .link {
+        overflow: hidden;
+        text-decoration: none;
+        color: black;
+        display: block;
+        padding: 10px;
+        &:hover {
+          color: white;
+          background: purple;
+          h6 {
+            color: white;
+          }
+        }
+        p {
+          margin: 0;
+          display: inline;
+        }
+        h6 {
+          font-weight: 500;
+          display: inline;
+          color: #777;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+}

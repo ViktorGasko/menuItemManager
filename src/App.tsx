@@ -1,57 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+
+import { NavBar } from "./components/NavBar/NavBar";
+import Edit from "./pages/edit/Edit";
+import Listing from "./pages/listing/Listing";
+import SingleMenu from "./pages/singleMenu/SingleMenu";
+import ItemPage from "./pages/ItemPage/ItemPage";
+import NotFound from "./pages/NotFound/NotFound";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./app/store";
 
 function App() {
+  const { menus } = useSelector((state: RootState) => state.menu);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <NavBar />
+        </header>
+        <div className="body">
+          <Switch>
+            <Route exact path="/">
+              <Listing />
+            </Route>
+            <Route exact path="/edit">
+              <Edit />
+            </Route>
+            {menus.map((menu: any) => {
+              return (
+                <Route
+                  exact
+                  path={"/" + menu.name}
+                  key={menu.name}
+                  children={<SingleMenu {...menu} />}
+                ></Route>
+              );
+            })}
+            <Route path="/:menu/:item" children={<ItemPage />} />
+            <Route>
+              <NotFound />
+            </Route>
+            {/* <Route path={"/menu/:menuName"}>
+              <SingleMenu />
+            </Route> */}
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 

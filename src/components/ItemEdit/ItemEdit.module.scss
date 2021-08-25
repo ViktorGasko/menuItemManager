@@ -1,0 +1,148 @@
+.editContainer {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  margin: 10px;
+  width: 200px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  animation: sideDrop 0.5s ease forwards;
+  @keyframes sideDrop {
+    0% {
+      opacity: 0;
+      width: 0px;
+    }
+    100% {
+      opacity: 1;
+      width: 200px;
+    }
+  }
+  .fileDropArea {
+    background-color: rgba(221, 160, 221, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 130px;
+    padding: 30px 25px 0 25px;
+    border: 2px solid plum;
+    border-radius: 2px;
+    animation: changeOpacity 0.8s ease forwards;
+    @keyframes changeOpacity {
+      0% {
+        opacity: 0;
+      }
+      30% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+  .fakeBtn {
+    border: 2px solid plum;
+    background-color: rgba(221, 160, 221, 0.55);
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .msg {
+    margin-top: 10px;
+    font-size: small;
+    font-weight: 300;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fileInput {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+    &:hover {
+      background-color: rgba(221, 160, 221, 0.55);
+    }
+  }
+  .body {
+    animation: changeOpacity 0.8s ease forwards;
+    @keyframes changeOpacity {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    label,
+    input {
+      margin: 2px 10px;
+      display: block;
+      width: 180px;
+    }
+    input {
+      padding: 5px;
+      outline: none;
+      border: 1px solid #555;
+      border-radius: 5px;
+      &:focus {
+        outline: none;
+        border: 1px solid purple;
+        &::placeholder {
+          color: transparent;
+        }
+      }
+      &::placeholder {
+        color: #777;
+      }
+    }
+    labeL {
+      font-weight: bold;
+    }
+    button {
+      float: right;
+      background-color: purple;
+      color: white;
+      border: none;
+      padding: 8px;
+      margin: 5px 10px 5px 0;
+      &:hover {
+        background-color: rgb(90, 8, 90);
+      }
+    }
+  }
+  .imgBox {
+    width: 100%;
+    height: 130px;
+    background: black;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+    .removeButton {
+      color: purple;
+      background: none;
+      border: none;
+      position: relative;
+      float: right;
+      padding: 5px 10px;
+      i {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

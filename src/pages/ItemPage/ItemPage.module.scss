@@ -1,0 +1,48 @@
+.container {
+  padding: 25px;
+  .header {
+    display: inline-block;
+    width: 80%;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    h3 {
+      display: inline-block;
+      padding-right: 15px;
+    }
+    .link {
+      text-decoration: none;
+      color: purple;
+      i {
+        padding-left: 10px;
+      }
+    }
+  }
+  .body {
+    width: 80%;
+    .imgDiv {
+      float: left;
+      background: black;
+      width: 40vw;
+      height: 70vh;
+      img {
+        width: inherit;
+        height: inherit;
+        object-fit: contain;
+      }
+    }
+    .text {
+      min-height: 400px;
+      padding: 10px;
+      padding-top: 0;
+      width: 300px;
+      float: left;
+      h1 {
+        float: right;
+        color: purple;
+        padding-right: 20px;
+      }
+    }
+  }
+}

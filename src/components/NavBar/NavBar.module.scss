@@ -1,0 +1,34 @@
+@import '../../colors.scss';
+
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6vh;
+  padding-top: .2rem;
+  z-index: 10;
+  background: white;
+  .navlink{
+    border: none;
+    float: right;
+    height: inherit;
+    line-height: 5vh;
+    vertical-align: middle;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background: none;
+    text-decoration: none;
+    color: black;
+    &.active{
+      color: purple;
+    }
+  }
+  span{
+    line-height: 5vh;
+    font-weight: bold;
+    vertical-align: middle;
+    float: right;
+  }
+}
