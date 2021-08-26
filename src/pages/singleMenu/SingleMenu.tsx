@@ -17,7 +17,7 @@ const SingleMenu = (props: any) => {
     setName(val.trim());
     const arr: any[] = [];
     props.items.forEach((obj: any) => {
-      if (obj.name.startsWith(name)) {
+      if (obj.name.startsWith(val)) {
         arr.push(obj.name);
       }
     });

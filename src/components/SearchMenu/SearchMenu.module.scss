@@ -8,6 +8,8 @@
       background: white;
       border: 1px solid #777;
       border-bottom: none;
+      word-break: break-all;
+      width: inherit;
       &:last-child {
         border: 1px solid #777;
       }

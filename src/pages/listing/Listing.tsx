@@ -17,11 +17,11 @@ const Listing = () => {
     setName(val.trim());
     const arr: any[] = [];
     menus.forEach((obj: any) => {
-      if (obj.name.startsWith(name)) arr.push(obj.name);
+      if (obj.name.startsWith(val)) arr.push(obj.name);
     });
     menus.forEach((obj: any) => {
       obj.items.forEach((objItem: any) => {
-        if (objItem.name.startsWith(name)) {
+        if (objItem.name.startsWith(val)) {
           arr.push({ name: objItem.name, menu: obj.name });
         }
       });
