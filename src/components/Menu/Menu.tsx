@@ -29,11 +29,11 @@ const Menu = (props: any) => {
           <i className="fa fa-ellipsis-v" onClick={onClick_1}></i>
         ) : null}
         <i className="fa fa-chevron-down" onClick={onClick_2}></i>
-        <Link to={"/" + props.name} className={styles.link}>
-          <h3>
+        <Link to={"/" + props.name}>
+          <div className={styles.linkDiv}>
             {props.name}
-            <i className="fa fa-external-link"></i>
-          </h3>
+            <p className="fa fa-external-link"></p>
+          </div>
         </Link>
         {showChangeMenu ? (
           <ul>

@@ -32,6 +32,9 @@
     display: inline-block;
     margin: 0;
     font-size: 1.25rem;
+    @media only screen and (max-width: 630px) {
+      display: none;
+    }
   }
   input {
     border: 1px solid #ccc;
@@ -41,6 +44,9 @@
     min-width: 200px;
     font-size: 1rem;
     margin-left: 25px;
+    @media only screen and (max-width: 630px) {
+      margin-left: 0;
+    }
     &:focus {
       border: 1px solid purple;
       outline: none;
@@ -53,6 +59,12 @@
     margin-left: 15px;
     color: #777;
     font-size: 1rem;
+    @media only screen and (max-width: 630px) {
+      margin-left: 5px;
+    }
+    @media only screen and (max-width: 350px) {
+      display: none;
+    }
     &:hover {
       color: purple;
     }
@@ -64,5 +76,8 @@
     min-width: 200px;
     left: 345px;
     z-index: 5;
+    @media only screen and (max-width: 630px) {
+      left: 90px;
+    }
   }
 }

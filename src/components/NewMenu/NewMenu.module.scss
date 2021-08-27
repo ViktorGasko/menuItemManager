@@ -2,9 +2,11 @@
   width: 350px;
   height: 80px;
   margin-left: 15px;
+  @media only screen and (max-width: 350px) {
+    width: 90%;
+  }
   button {
     height: inherit;
-    width: inherit;
     background: none;
     border: none;
     h1 {
@@ -13,8 +15,12 @@
     i {
       position: relative;
       float: right;
-      font-size: 2rem;
-      top: 22%;
+      font-size: 1.8rem;
+      top: 25%;
+      @media only screen and (max-width: 500px) {
+        margin-left: 20px;
+        float: left;
+      }
     }
   }
 }
@@ -66,6 +72,10 @@
     font-size: 3rem;
     color: purple;
     margin-left: 20px;
+    @media only screen and (max-width: 500px) {
+      min-width: 280px;
+      font-size: 2rem;
+    }
     &:focus {
       outline: none;
       &::placeholder {

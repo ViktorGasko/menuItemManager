@@ -1,9 +1,19 @@
 .title {
-  display: block;
   margin-top: 0;
   padding-left: 15px;
   color: purple;
+  width: 90%;
+  min-width: 280px;
   font-size: 2.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  @media only screen and (max-width: 630px) {
+    font-size: 1.5rem;
+  }
 }
 .items {
   height: 450px;
@@ -45,6 +55,9 @@
       display: inline-block;
       margin: 0;
       font-size: 1.25rem;
+      @media only screen and (max-width: 630px) {
+        display: none;
+      }
     }
     input {
       border: 1px solid #ccc;
@@ -54,6 +67,9 @@
       min-width: 200px;
       font-size: 1rem;
       margin-left: 25px;
+      @media only screen and (max-width: 630px) {
+        margin-left: 0;
+      }
       &:focus {
         border: 1px solid purple;
         outline: none;
@@ -69,6 +85,12 @@
       &:hover {
         color: purple;
       }
+      @media only screen and (max-width: 630px) {
+        margin-left: 5px;
+      }
+      @media only screen and (max-width: 350px) {
+        display: none;
+      }
     }
     .searchMenuContainer {
       position: absolute;
@@ -77,6 +99,9 @@
       min-width: 200px;
       left: 345px;
       z-index: 5;
+      @media only screen and (max-width: 630px) {
+        left: 90px;
+      }
     }
   }
 }
