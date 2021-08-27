@@ -1,13 +1,9 @@
-import { useSelector } from "react-redux";
 import Menu from "../../components/Menu/Menu";
 import NewMenu from "../../components/NewMenu/NewMenu";
 import styles from "./Edit.module.scss";
-import { RootState } from "../../app/store";
 import React from "react";
 
-const Edit = () => {
-  const { menus } = useSelector((state: RootState) => state.menu);
-
+const Edit = ({ menus }: any) => {
   return (
     <div>
       <NewMenu />

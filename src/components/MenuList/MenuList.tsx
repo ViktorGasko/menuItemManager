@@ -1,18 +1,22 @@
 import styles from "./MenuList.module.scss";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 const MenuList = (props: any) => {
+  const { menus } = useSelector((state: RootState) => state.menu);
+
   return (
     <div className={styles.menuList}>
       <ul>
-        {props.names.map((name: string) => (
-          <li key={name}>
+        {menus.map((menu: any) => (
+          <li key={menu.name}>
             <NavLink
-              to={"/" + name}
+              to={"/" + menu.name}
               className={styles.navLink}
               activeClassName={styles.navLinkActive}
             >
-              {name}
+              {menu.name}
             </NavLink>
           </li>
         ))}

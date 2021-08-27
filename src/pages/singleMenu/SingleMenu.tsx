@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
 import Item from "../../components/Item/Item";
 import MenuList from "../../components/MenuList/MenuList";
 import SearchMenu from "../../components/SearchMenu/SearchMenu";
@@ -9,7 +7,6 @@ import styles from "./SingleMenu.module.scss";
 const SingleMenu = (props: any) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const onClick = () => setShowMenu(!showMenu);
-  const { menus } = useSelector((state: RootState) => state.menu);
   const [name, setName] = React.useState("");
   const [searchArr, setSearchArr] = React.useState<any[]>([]);
   const setArr = (arr: any) => setSearchArr(arr);
@@ -56,9 +53,7 @@ const SingleMenu = (props: any) => {
             </div>
           ) : null}
         </div>
-        {showMenu ? (
-          <MenuList names={menus.map((menu: any) => menu.name)} />
-        ) : null}
+        {showMenu ? <MenuList /> : null}
       </div>
       <div className={styles.items}>
         {props.items.map((item: any) => (

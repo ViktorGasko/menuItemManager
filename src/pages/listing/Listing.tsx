@@ -1,15 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
 import Menu from "../../components/Menu/Menu";
 import MenuList from "../../components/MenuList/MenuList";
 import SearchMenu from "../../components/SearchMenu/SearchMenu";
 import styles from "./Listing.module.scss";
 
-const Listing = () => {
+const Listing = ({ menus }: any) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const onClick = () => setShowMenu(!showMenu);
-  const { menus } = useSelector((state: RootState) => state.menu);
   const [name, setName] = React.useState("");
   const [searchArr, setSearchArr] = React.useState<any[]>([]);
   const setArr = (arr: any) => setSearchArr(arr);
@@ -59,9 +56,7 @@ const Listing = () => {
           </div>
         ) : null}
       </div>
-      {showMenu ? (
-        <MenuList names={menus.map((menu: any) => menu.name)} />
-      ) : null}
+      {showMenu ? <MenuList /> : null}
       {menus.map((menu: any) => (
         <Menu {...menu} key={menu.name} />
       ))}

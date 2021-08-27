@@ -7,7 +7,7 @@ import { addMenu } from "../../app/menuSlice";
 import Item from "../Item/Item";
 import { RootState } from "../../app/store";
 
-const NewMenu = (props: any) => {
+const NewMenu = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   const [name, setName] = React.useState("");
   const onClick = () => setShowMenu(!showMenu);

@@ -22,10 +22,10 @@ function App() {
         <div className="body">
           <Switch>
             <Route exact path="/">
-              <Listing />
+              <Listing menus={menus} />
             </Route>
             <Route exact path="/edit">
-              <Edit />
+              <Edit menus={menus} />
             </Route>
             {menus.map((menu: any) => {
               return (
@@ -41,9 +41,6 @@ function App() {
             <Route>
               <NotFound />
             </Route>
-            {/* <Route path={"/menu/:menuName"}>
-              <SingleMenu />
-            </Route> */}
           </Switch>
         </div>
       </div>

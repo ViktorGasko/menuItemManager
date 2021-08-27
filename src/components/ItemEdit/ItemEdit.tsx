@@ -114,7 +114,7 @@ const ItemEdit = (props: any) => {
                       oldName: props.name,
                       img: img,
                       name: name,
-                      price: price,
+                      price: Math.abs(parseFloat(price)).toFixed(2),
                       menu: props.menu,
                     })
                   )

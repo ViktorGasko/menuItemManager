@@ -2,7 +2,7 @@ import {  createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 
 
 export interface MenuState {
-  newMenu:any
+  newMenu: any,
   menus: any,
 }
 
@@ -18,9 +18,11 @@ export const menuSlice = createSlice({
     addMenu: (state, action: PayloadAction<any>) => {
       if(current(state.menus).filter((menu: any) => menu.name === action.payload).length > 0){
         alert(`Menu named ${action.payload.name} already exists. Choose different name.`)
+        return;
       }
         else if( action.payload.length < 3 || action.payload.length > 30){
           alert(`Length must be between 3 and 30 characters`)
+          return;
         }
       else{
         state.newMenu.name = action.payload
@@ -57,6 +59,10 @@ export const menuSlice = createSlice({
         alert('Choose image and fill all fields.')
         return;
       }
+      else if( action.payload.name.length < 3 || action.payload.name.length > 30){
+          alert(`Length must be between 3 and 30 characters`)
+          return;
+      }
       let menu
       if(action.payload.menu){
         menu = current(state.menus).find((obj: any) => { return obj.name === action.payload.menu})
@@ -87,6 +93,10 @@ export const menuSlice = createSlice({
     },
 
     changeItem: (state, action: PayloadAction<any>) => {
+      if( action.payload.name.length < 3 || action.payload.name.length > 30){
+          alert(`Length must be between 3 and 30 characters`)
+          return;
+      }
       if(action.payload.menu === ''){
         const arr = state.newMenu.items
         if(arr.findIndex((item: any) => item.name === action.payload.name) > -1 && action.payload.name !== action.payload.oldName){
