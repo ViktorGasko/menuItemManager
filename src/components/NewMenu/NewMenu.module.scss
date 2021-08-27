@@ -9,14 +9,15 @@
     height: inherit;
     background: none;
     border: none;
+    width: 100%;
     h1 {
       float: left;
     }
     i {
       position: relative;
-      float: right;
       font-size: 1.8rem;
       top: 25%;
+      float: right;
       @media only screen and (max-width: 500px) {
         margin-left: 20px;
         float: left;

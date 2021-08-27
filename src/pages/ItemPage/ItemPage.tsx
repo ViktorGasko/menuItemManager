@@ -28,10 +28,12 @@ const ItemPage = () => {
           <div className={styles.header}>
             <h3>Menu:</h3>
             <Link to={"/" + itemObj.menu} className={styles.link}>
-              <h3>
-                {itemObj.menu}
-                <i className="fa fa-external-link"></i>
-              </h3>
+              <div className={styles.linkDiv}>
+                <h3>
+                  {itemObj.menu}
+                  <i className="fa fa-external-link"></i>
+                </h3>
+              </div>
             </Link>
           </div>
           <div className={styles.body}>
