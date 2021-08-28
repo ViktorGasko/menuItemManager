@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import styles from "./ItemEdit.module.scss";
 import { addItem, removeItem, changeItem } from "../../app/menuSlice";
 
 const ItemEdit = (props: any) => {
   const dispatch = useDispatch();
-  const [img, setImg] = React.useState<File>();
+  const [img, setImg] = React.useState<File | undefined>(props.img);
   const [name, setName] = React.useState(props.name);
   const [price, setPrice] = React.useState(props.price);
 
-  useEffect(() => {
-    if (props.img) {
-      setImg(props.img);
-    }
-  }, []);
   const onClick = () => setImg(undefined);
   const onClick2 = (val: string) => setName(val.trim());
   const onClick3 = (val: string) => setPrice(val);
