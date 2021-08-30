@@ -25,6 +25,19 @@
       margin-left: 10px;
     }
   }
+  .empty {
+    font-size: 1rem;
+    font-style: normal;
+    &:hover {
+      color: black;
+      cursor: auto;
+    }
+    @media only screen and (max-width: 500px) {
+      padding-top: 1rem;
+      font-size: 1rem;
+      margin-left: 10px;
+    }
+  }
   a {
     text-decoration: none;
     .linkDiv {
@@ -84,6 +97,8 @@
   overflow-x: overlay;
   overflow-y: hidden;
   white-space: nowrap;
+}
+.itemsShow {
   animation: drop 0.5s ease-in-out forwards;
   @keyframes drop {
     from {
@@ -91,22 +106,17 @@
       opacity: 0.2;
     }
     to {
-      height: 320px;
       opacity: 1;
+      height: 320px;
     }
   }
 }
-.itemsHidden {
-  height: 320px;
-  width: 100%;
-  overflow-x: overlay;
-  overflow-y: hidden;
-  white-space: nowrap;
+.itemsHide {
   animation: hide 0.5s ease-in-out forwards;
   @keyframes hide {
     to {
-      height: 0;
       opacity: 0;
+      height: 0;
     }
     from {
       height: 320px;

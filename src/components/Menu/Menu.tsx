@@ -6,49 +6,70 @@ import ChangeMenu from "./helpComponents/ChangeMenu";
 import DeleteMenu from "./helpComponents/DeleteMenu";
 import { Link } from "react-router-dom";
 
-const Menu = (props: any) => {
-  const [showChangeMenu, setShowChangeMenu] = React.useState(false);
-  const [showChangeName, setshowChangeName] = React.useState(false);
-  const [showDeleteMenu, setShowDeleteMenu] = React.useState(false);
-  const [showItemsMenu, setShowItemsMenu] = React.useState(true);
-  const onClick_1 = () => setShowChangeMenu(!showChangeMenu);
-  const onClick_2 = () => setShowItemsMenu(!showItemsMenu);
-  const onClick_3 = (val: boolean) => setshowChangeName(val);
-  const onClick_4 = (val: boolean) => setShowDeleteMenu(val);
-  const handleChangeClick = () => {
-    onClick_3(false);
+interface MenuProps {
+  name: string;
+  items: { name: string; price: string; img: string; menu: string }[];
+}
+
+const Menu = (props: MenuProps) => {
+  const [editMenuVisible, setEditMenuVisible] = React.useState(false);
+  const [itemsMenuVisible, setItemsMenuVisible] = React.useState(true);
+  const [itemsMenuClicked, setItemsMenuClicked] = React.useState(false);
+  const [editNameVisible, setEditNameVisible] = React.useState(false);
+  const [deleteMenuVisible, setDeleteMenuVisible] = React.useState(false);
+  const changeItemsMenuClicked = () => setItemsMenuClicked(true);
+  const changeEditMenuVisible = () => setEditMenuVisible(!editMenuVisible);
+  const changeItemMenuVisible = () => setItemsMenuVisible(!itemsMenuVisible);
+  const changeEditNameVisible = (visible: boolean) =>
+    setEditNameVisible(visible);
+  const changeDeleteMenuVisible = (visible: boolean) =>
+    setDeleteMenuVisible(visible);
+  const changeNameVisibleToFalse = () => {
+    changeEditNameVisible(false);
   };
-  const handleDeleteClick = () => {
-    onClick_4(false);
+  const deleteMenuVisibleToFalse = () => {
+    changeDeleteMenuVisible(false);
   };
+  const showItems =
+    props.items.length === 0 && window.location.pathname === "/";
 
   return (
     <div>
       <div className={styles.header}>
         {window.location.pathname === "/edit" ? (
-          <i className="fa fa-ellipsis-v" onClick={onClick_1}></i>
+          <i className="fa fa-ellipsis-v" onClick={changeEditMenuVisible}></i>
         ) : null}
-        <i className="fa fa-chevron-down" onClick={onClick_2}></i>
+        {showItems ? (
+          <i className={styles.empty}>(empty)</i>
+        ) : (
+          <i
+            className="fa fa-chevron-down"
+            onClick={() => {
+              changeItemMenuVisible();
+              changeItemsMenuClicked();
+            }}
+          ></i>
+        )}
         <Link to={"/" + props.name}>
           <div className={styles.linkDiv}>
             {props.name}
             <p className="fa fa-external-link"></p>
           </div>
         </Link>
-        {showChangeMenu ? (
+        {editMenuVisible ? (
           <ul>
             <li
               onClick={() => {
-                onClick_3(true);
-                onClick_1();
+                changeEditNameVisible(true);
+                changeEditMenuVisible();
               }}
             >
               Change name
             </li>
             <li
               onClick={() => {
-                onClick_4(true);
-                onClick_1();
+                changeDeleteMenuVisible(true);
+                changeEditMenuVisible();
               }}
             >
               Delete menu
@@ -56,21 +77,38 @@ const Menu = (props: any) => {
           </ul>
         ) : null}
       </div>
-      <div className={showItemsMenu ? styles.items : styles.itemsHidden}>
+      <div
+        className={[
+          showItems ? "" : styles.items,
+          showItems
+            ? ""
+            : !itemsMenuClicked
+            ? ""
+            : itemsMenuVisible
+            ? styles.itemsShow
+            : styles.itemsHide,
+        ].join(" ")}
+      >
         {window.location.pathname === "/edit" ? (
           <div className={styles.itemEditContainer}>
-            <ItemEdit name="" price="" menu={props.name} />
+            <ItemEdit name="" price="" menu={props.name} img="" />
           </div>
         ) : null}
-        {props.items.map((item: any) => (
+        {props.items.map((item) => (
           <Item key={item.name} {...item} />
         ))}
       </div>
-      {showChangeName ? (
-        <ChangeMenu name={props.name} onclick={handleChangeClick}></ChangeMenu>
+      {editNameVisible ? (
+        <ChangeMenu
+          name={props.name}
+          onclick={changeNameVisibleToFalse}
+        ></ChangeMenu>
       ) : null}
-      {showDeleteMenu ? (
-        <DeleteMenu name={props.name} onclick={handleDeleteClick}></DeleteMenu>
+      {deleteMenuVisible ? (
+        <DeleteMenu
+          name={props.name}
+          onclick={deleteMenuVisibleToFalse}
+        ></DeleteMenu>
       ) : null}
     </div>
   );

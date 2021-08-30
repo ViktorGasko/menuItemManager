@@ -1,5 +1,3 @@
-import React from "react";
-
 import { NavBar } from "./components/NavBar/NavBar";
 import Edit from "./pages/edit/Edit";
 import Listing from "./pages/listing/Listing";
@@ -27,7 +25,7 @@ function App() {
             <Route exact path="/edit">
               <Edit menus={menus} />
             </Route>
-            {menus.map((menu: any) => {
+            {menus.map((menu) => {
               return (
                 <Route
                   exact

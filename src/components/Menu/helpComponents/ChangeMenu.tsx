@@ -3,12 +3,16 @@ import { useDispatch } from "react-redux";
 import { changeMenusName } from "../../../app/menuSlice";
 import React from "react";
 
-const ChangeMenu = (props: any) => {
+interface Props {
+  name: string;
+  onclick: () => void;
+}
+
+const ChangeMenu = (props: Props) => {
   const [name, setName] = React.useState(props.name);
-  const onClick = (val: string) => setName(val.trim());
   const dispatch = useDispatch();
-  const clicked = (val: boolean) => {
-    if (val === true) {
+  const clicked = (confirm: boolean) => {
+    if (confirm) {
       dispatch(changeMenusName({ name: name, oldName: props.name }));
     }
     props.onclick();
@@ -21,7 +25,7 @@ const ChangeMenu = (props: any) => {
           type="text"
           name="name"
           placeholder={props.name}
-          onChange={(e) => onClick(e.target.value)}
+          onChange={(e) => setName(e.target.value.trim())}
         />
         <div className={styles.buttonDiv}>
           <button onClick={() => clicked(true)}>Confirm</button>

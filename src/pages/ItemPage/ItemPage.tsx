@@ -1,22 +1,20 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { RootState } from "../../app/store";
 import NotFound from "../NotFound/NotFound";
-
 import styles from "./ItemPage.module.scss";
 
+interface ParamTypes {
+  menu: string;
+  item: string;
+}
+
 const ItemPage = () => {
-  const { menu, item }: any = useParams();
+  const { menu, item } = useParams<ParamTypes>();
   const itemObj = useSelector((state: RootState) => {
-    try {
-      return state.menu.menus
-        .find((obj: any) => obj.name === menu)
-        .items.find((obj2: any) => obj2.name === item);
-    } catch {
-      console.log("Page not Found");
-      return;
-    }
+    return state.menu.menus
+      .find((menuObj) => menuObj.name === menu)
+      ?.items.find((itemObj) => itemObj.name === item);
   });
 
   return (
@@ -38,7 +36,7 @@ const ItemPage = () => {
           </div>
           <div className={styles.body}>
             <div className={styles.imgDiv}>
-              <img src={URL.createObjectURL(itemObj.img)} alt="" />
+              <img src={itemObj.img} alt="" />
             </div>
             <div className={styles.text}>
               <h2>{itemObj.name}</h2>

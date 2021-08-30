@@ -2,17 +2,28 @@ import styles from "./SearchMenu.module.scss";
 import { Link } from "react-router-dom";
 
 const SearchMenu = (props: any) => {
+  const getHighlightedText = (text: string) => {
+    const parts = text.split(new RegExp(`(${props.searchTerm})`, "i"));
+    return (
+      <p>
+        {parts.map((part) =>
+          part.toLowerCase() === props.searchTerm ? <b>{part}</b> : part
+        )}
+      </p>
+    );
+  };
+
   return (
     <div className={styles.menu}>
       <ul>
         {props.menu
-          ? props.values.map((item: any) => (
+          ? props.values.map((item: string) => (
               <li>
                 <Link
                   to={"/" + props.menu + "/" + item}
                   className={styles.link}
                 >
-                  <p>{item}</p>
+                  {getHighlightedText(item)}
                 </Link>
               </li>
             ))
@@ -23,11 +34,11 @@ const SearchMenu = (props: any) => {
                     to={"/" + item.menu + "/" + item.name}
                     className={styles.link}
                   >
-                    <p>{item.name}</p>
+                    {getHighlightedText(item.name)}
                   </Link>
                 ) : (
                   <Link to={"/" + item} className={styles.link}>
-                    <p> {item}</p> <h6> menu</h6>
+                    {getHighlightedText(item)} <h6> menu</h6>
                   </Link>
                 )}
               </li>

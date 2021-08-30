@@ -10,14 +10,14 @@ import { RootState } from "../../app/store";
 const NewMenu = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   const [name, setName] = React.useState("");
-  const onClick = () => setShowMenu(!showMenu);
-  const onClick2 = (val: string) => setName(val.trim());
+  const changeShowMenu = () => setShowMenu(!showMenu);
+  const onMenuNameChange = (newMenuName: string) => setName(newMenuName.trim());
   const dispatch = useDispatch();
   const { newMenu } = useSelector((state: RootState) => state.menu);
   return (
     <div>
       <div className={styles.header}>
-        <button onClick={onClick}>
+        <button onClick={changeShowMenu}>
           <h1>Create new menu</h1>
           <i className="fa fa-plus"></i>
         </button>
@@ -29,14 +29,14 @@ const NewMenu = () => {
               type="text"
               placeholder="Choose name"
               className={styles.inputMenuTitle}
-              onChange={(e) => onClick2(e.target.value)}
+              onChange={(e) => onMenuNameChange(e.target.value)}
             />
           </div>
           <div className={styles.items}>
             <div className={styles.itemEditContainer}>
-              <ItemEdit name="" price="" menu="" />
+              <ItemEdit name="" price="" menu="" img="" />
             </div>
-            {newMenu.items.map((item: any) => (
+            {newMenu.items.map((item) => (
               <Item key={item.name} {...item} />
             ))}
           </div>

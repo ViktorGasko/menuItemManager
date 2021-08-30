@@ -1,7 +1,6 @@
 .container {
   display: inline-flex;
   position: relative;
-  height: calc(100% - 40px);
   &:last-child {
     margin-right: 15px;
   }
@@ -20,11 +19,11 @@
         object-fit: contain;
       }
       .menuButton {
+        color: purple;
         background: none;
         border: none;
-        position: relative;
-        color: purple;
-        float: right;
+        position: absolute;
+        left: 155px;
         padding: 5px 10px;
         i {
           font-size: 1.2rem;
@@ -52,15 +51,6 @@
         padding-left: 10%;
         overflow-wrap: break-word;
         white-space: pre-wrap;
-      }
-      animation: visible 1s ease-in-out forwards;
-      @keyframes visible {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
       }
     }
   }

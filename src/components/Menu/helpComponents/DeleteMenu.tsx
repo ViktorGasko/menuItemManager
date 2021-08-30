@@ -2,10 +2,15 @@ import styles from "./helpMenu.module.scss";
 import { useDispatch } from "react-redux";
 import { removeMenu } from "../../../app/menuSlice";
 
-const DeleteMenu = (props: any) => {
+interface Props {
+  name: string;
+  onclick: () => void;
+}
+
+const DeleteMenu = (props: Props) => {
   const dispatch = useDispatch();
-  const clicked = (val: boolean) => {
-    if (val === true) {
+  const clicked = (confirm: boolean) => {
+    if (confirm) {
       dispatch(removeMenu(props.name));
     }
     props.onclick();

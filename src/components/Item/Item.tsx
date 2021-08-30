@@ -3,24 +3,32 @@ import styles from "./Item.module.scss";
 import ItemEdit from "../ItemEdit/ItemEdit";
 import { Link } from "react-router-dom";
 
-const Item = (props: any) => {
-  const [showItemEdit, setShowItemEdit] = React.useState(false);
-  const width =
+interface ItemProps {
+  name: string;
+  price: string;
+  img: string;
+  menu: string;
+}
+
+const Item = (props: ItemProps) => {
+  const [itemEditVisible, setItemEditVisible] = React.useState(false);
+  const size =
     window.location.pathname === "/" + props.menu
-      ? { width: "246px" }
-      : { width: "168px" };
-  const onClick = () => setShowItemEdit(!showItemEdit);
+      ? { width: "246px", height: "410px" }
+      : { width: "168px", height: "280px" };
+
+  const showItemEdit = () => setItemEditVisible(!itemEditVisible);
 
   return (
     <div className={styles.container}>
-      <div id={styles.item} style={width}>
+      <div id={styles.item} style={size}>
         <div className={styles.imgBox}>
           {window.location.pathname === "/edit" ? (
-            <button className={styles.menuButton} onClick={onClick}>
+            <button className={styles.menuButton} onClick={showItemEdit}>
               <i className="fa fa-ellipsis-v"></i>
             </button>
           ) : null}
-          <img src={URL.createObjectURL(props.img)} alt="" />
+          <img src={props.img} alt="" />
         </div>
         <div className={styles.text}>
           {props.menu === "" ? (
@@ -33,7 +41,7 @@ const Item = (props: any) => {
           <h2>{props.price} &euro;</h2>
         </div>
       </div>
-      {showItemEdit ? (
+      {itemEditVisible ? (
         <ItemEdit
           name={props.name}
           price={props.price}

@@ -3,37 +3,57 @@ import { useDispatch } from "react-redux";
 import styles from "./ItemEdit.module.scss";
 import { addItem, removeItem, changeItem } from "../../app/menuSlice";
 
-const ItemEdit = (props: any) => {
+interface ItemProps {
+  name: string;
+  price: string;
+  img: string;
+  menu: string;
+}
+
+const ItemEdit = (props: ItemProps) => {
   const dispatch = useDispatch();
-  const [img, setImg] = React.useState<File | undefined>(props.img);
+  const [img, setImg] = React.useState<string>(props.img);
   const [name, setName] = React.useState(props.name);
   const [price, setPrice] = React.useState(props.price);
 
-  const onClick = () => setImg(undefined);
-  const onClick2 = (val: string) => setName(val.trim());
-  const onClick3 = (val: string) => setPrice(val);
+  const removeImage = () => setImg("");
+
   const clear = () => {
-    onClick();
-    onClick2("");
-    onClick3("");
+    removeImage();
+    setName("");
+    setPrice("");
   };
-  const checkImg = (img: any) => {
+  const toBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const checkImg = (img: File) => {
     if (img && (img.type === "image/png" || img.type === "image/jpeg")) {
       Object.defineProperty(img, "name", {
         writable: true,
-        value: "profilePic",
+        value: "itemPic",
       });
-      setImg(img);
+      toBase64(img)
+        .then((data) => setImg(data as string))
+        .catch((error) => {
+          console.log(error);
+          removeImage();
+        });
     } else {
       console.log("Choose file of type .png or .jpeg");
-      setImg(undefined);
+      removeImage();
     }
   };
 
   return (
     <div className={styles.editContainer}>
       <div>
-        {img === undefined ? (
+        {!img ? (
           <div className={styles.fileDropArea}>
             <span className={styles.fakeBtn}>Choose file</span>
             <span className={styles.msg}>or drag and drop files here</span>
@@ -47,10 +67,10 @@ const ItemEdit = (props: any) => {
           </div>
         ) : (
           <div className={styles.imgBox}>
-            <button className={styles.removeButton} onClick={onClick}>
+            <button className={styles.removeButton} onClick={removeImage}>
               <i className="fa fa-times"></i>
             </button>
-            <img src={URL.createObjectURL(img)} alt="" />
+            <img src={img} alt="" />
           </div>
         )}
         <div className={styles.body}>
@@ -60,7 +80,7 @@ const ItemEdit = (props: any) => {
             name="name"
             placeholder={props.name ? props.name : "Item's name"}
             value={name}
-            onChange={(e) => onClick2(e.target.value)}
+            onChange={(e) => setName(e.target.value.trim())}
           />
           <label htmlFor="price">Price</label>
           <input
@@ -68,7 +88,7 @@ const ItemEdit = (props: any) => {
             name="price"
             placeholder={props.price ? props.price : "Item's Price"}
             value={price}
-            onChange={(e) => onClick3(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
           {!props.name ? (
             [
