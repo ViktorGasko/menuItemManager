@@ -18,7 +18,7 @@ const SearchMenu = (props: any) => {
       <ul>
         {props.menu
           ? props.values.map((item: string) => (
-              <li>
+              <li key={"/" + props.menu + "/" + item}>
                 <Link
                   to={"/" + props.menu + "/" + item}
                   className={styles.link}
@@ -28,7 +28,9 @@ const SearchMenu = (props: any) => {
               </li>
             ))
           : props.values.map((item: any) => (
-              <li>
+              <li
+                key={item.name ? "/" + item.menu + "/" + item.name : "/" + item}
+              >
                 {item.name ? (
                   <Link
                     to={"/" + item.menu + "/" + item.name}
