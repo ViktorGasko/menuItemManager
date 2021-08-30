@@ -7,7 +7,13 @@ const SearchMenu = (props: any) => {
     return (
       <p>
         {parts.map((part) =>
-          part.toLowerCase() === props.searchTerm ? <b>{part}</b> : part
+          part.toLowerCase() === props.searchTerm ? (
+            <b key={part + Math.floor(Math.random() * 100000).toString()}>
+              {part}
+            </b>
+          ) : (
+            part
+          )
         )}
       </p>
     );
