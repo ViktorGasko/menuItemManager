@@ -2,15 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styles from "./ItemEdit.module.scss";
 import { addItem, removeItem, changeItem } from "../../app/menuSlice";
+import { ItemType } from "../../app/menuSlice";
 
-interface ItemProps {
-  name: string;
-  price: string;
-  img: string;
-  menu: string;
-}
-
-const ItemEdit = (props: ItemProps) => {
+const ItemEdit = (props: ItemType) => {
   const dispatch = useDispatch();
   const [img, setImg] = React.useState<string>(props.img);
   const [name, setName] = React.useState(props.name);

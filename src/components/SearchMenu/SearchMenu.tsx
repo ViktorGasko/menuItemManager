@@ -15,37 +15,54 @@ const SearchMenu = (props: any) => {
 
   return (
     <div className={styles.menu}>
-      <ul>
-        {props.menu
-          ? props.values.map((item: string) => (
-              <li key={"/" + props.menu + "/" + item}>
+      {props.menu ? (
+        <ul>
+          {props.values.map((item: string) => (
+            <li
+              key={
+                props.menu +
+                item +
+                Math.floor(Math.random() * 100000).toString()
+              }
+            >
+              <Link to={"/" + props.menu + "/" + item} className={styles.link}>
+                {getHighlightedText(item)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <ul>
+          {props.values.map((item: any) =>
+            item.name ? (
+              <li
+                key={
+                  item.menu +
+                  item.name +
+                  Math.floor(Math.random() * 100000).toString()
+                }
+              >
                 <Link
-                  to={"/" + props.menu + "/" + item}
+                  to={"/" + item.menu + "/" + item.name}
                   className={styles.link}
                 >
-                  {getHighlightedText(item)}
+                  {getHighlightedText(item.name)}
                 </Link>
               </li>
-            ))
-          : props.values.map((item: any) => (
+            ) : (
               <li
-                key={item.name ? "/" + item.menu + "/" + item.name : "/" + item}
+                key={
+                  "menu" + item + Math.floor(Math.random() * 100000).toString()
+                }
               >
-                {item.name ? (
-                  <Link
-                    to={"/" + item.menu + "/" + item.name}
-                    className={styles.link}
-                  >
-                    {getHighlightedText(item.name)}
-                  </Link>
-                ) : (
-                  <Link to={"/" + item} className={styles.link}>
-                    {getHighlightedText(item)} <h6> menu</h6>
-                  </Link>
-                )}
+                <Link to={"/" + item} className={styles.link}>
+                  {getHighlightedText(item)} <h6> menu</h6>
+                </Link>
               </li>
-            ))}
-      </ul>
+            )
+          )}
+        </ul>
+      )}
     </div>
   );
 };

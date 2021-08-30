@@ -3,12 +3,10 @@ import Menu from "../../components/Menu/Menu";
 import MenuList from "../../components/MenuList/MenuList";
 import SearchMenu from "../../components/SearchMenu/SearchMenu";
 import styles from "./Listing.module.scss";
+import { MenuType } from "../../app/menuSlice";
 
 interface MenusProps {
-  menus: {
-    name: string;
-    items: { name: string; price: string; img: string; menu: string }[];
-  }[];
+  menus: MenuType[];
 }
 
 const Listing = ({ menus }: MenusProps) => {

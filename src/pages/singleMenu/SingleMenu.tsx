@@ -3,13 +3,9 @@ import Item from "../../components/Item/Item";
 import MenuList from "../../components/MenuList/MenuList";
 import SearchMenu from "../../components/SearchMenu/SearchMenu";
 import styles from "./SingleMenu.module.scss";
+import { MenuType } from "../../app/menuSlice";
 
-interface SingleMenuProps {
-  name: string;
-  items: { name: string; price: string; img: string; menu: string }[];
-}
-
-const SingleMenu = (props: SingleMenuProps) => {
+const SingleMenu = (props: MenuType) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const changeShowMenu = () => setShowMenu(!showMenu);
   const [searchTerm, setSearchTerm] = React.useState("");

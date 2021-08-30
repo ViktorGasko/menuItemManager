@@ -2,15 +2,9 @@ import React from "react";
 import styles from "./Item.module.scss";
 import ItemEdit from "../ItemEdit/ItemEdit";
 import { Link } from "react-router-dom";
+import { ItemType } from "../../app/menuSlice";
 
-interface ItemProps {
-  name: string;
-  price: string;
-  img: string;
-  menu: string;
-}
-
-const Item = (props: ItemProps) => {
+const Item = (props: ItemType) => {
   const [itemEditVisible, setItemEditVisible] = React.useState(false);
   const size =
     window.location.pathname === "/" + props.menu

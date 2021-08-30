@@ -1,8 +1,16 @@
 import {  createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 
-export interface MenuState {
-  newMenu: { name: string, items: {name: string, price: string, img: string, menu: string}[] },
-  menus: { name: string, items: {name: string, price: string, img: string, menu: string}[] }[],
+export type MenuType = {
+  name: string, items: ItemType[]
+}
+
+export type ItemType = {
+  name: string, price: string, img: string, menu: string
+}
+
+interface MenuState {
+  newMenu: MenuType,
+  menus: MenuType[],
 }
 
 const initialState: MenuState = {
@@ -53,7 +61,7 @@ export const menuSlice = createSlice({
       }
     },
 
-    addItem: (state, action: PayloadAction<{name: string, price: string, img: string, menu: string}>) => {
+    addItem: (state, action: PayloadAction<ItemType>) => {
       if(!action.payload.name || !action.payload.price || !action.payload.img){
         alert('Choose image and fill all fields.')
         return;

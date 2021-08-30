@@ -5,13 +5,9 @@ import ItemEdit from "../ItemEdit/ItemEdit";
 import ChangeMenu from "./helpComponents/ChangeMenu";
 import DeleteMenu from "./helpComponents/DeleteMenu";
 import { Link } from "react-router-dom";
+import { MenuType } from "../../app/menuSlice";
 
-interface MenuProps {
-  name: string;
-  items: { name: string; price: string; img: string; menu: string }[];
-}
-
-const Menu = (props: MenuProps) => {
+const Menu = (props: MenuType) => {
   const [editMenuVisible, setEditMenuVisible] = React.useState(false);
   const [itemsMenuVisible, setItemsMenuVisible] = React.useState(true);
   const [itemsMenuClicked, setItemsMenuClicked] = React.useState(false);

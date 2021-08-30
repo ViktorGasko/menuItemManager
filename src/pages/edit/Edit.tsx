@@ -1,12 +1,10 @@
 import Menu from "../../components/Menu/Menu";
 import NewMenu from "../../components/NewMenu/NewMenu";
 import styles from "./Edit.module.scss";
+import { MenuType } from "../../app/menuSlice";
 
 interface MenusProps {
-  menus: {
-    name: string;
-    items: { name: string; price: string; img: string; menu: string }[];
-  }[];
+  menus: MenuType[];
 }
 
 const Edit = ({ menus }: MenusProps) => {
